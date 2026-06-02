@@ -1,0 +1,212 @@
+[
+    {
+        "ID":1,
+        "LIST":"LOGIN DAILY",
+        "COUNT":1,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":2,
+        "LIST":"UPGRADE AMMO",
+        "COUNT":3,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":3,
+        "LIST":"WATCH 1 REWARDED ADS",
+        "COUNT":1,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":4,
+        "LIST":"COMPLETE 5 STAGES",
+        "COUNT":5,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":5,
+        "LIST":"COMPLETE 10 STAGES",
+        "COUNT":10,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":6,
+        "LIST":"COMPLETE 15 STAGES",
+        "COUNT":15,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":7,
+        "LIST":"HIT 5 BRAINS",
+        "COUNT":5,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":8,
+        "LIST":"HIT 10 BRAINS",
+        "COUNT":10,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":9,
+        "LIST":"HIT 15 BRAINS",
+        "COUNT":15,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":10,
+        "LIST":"HIT 20 BRAINS",
+        "COUNT":20,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":11,
+        "LIST":"HIT 5 HEARTS",
+        "COUNT":5,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":12,
+        "LIST":"HIT 10 HEARTS",
+        "COUNT":10,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":13,
+        "LIST":"HIT 15 HEARTS",
+        "COUNT":15,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":14,
+        "LIST":"HIT 20 HEARTS",
+        "COUNT":20,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":15,
+        "LIST":"SPEND 20K Money",
+        "COUNT":20000,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":16,
+        "LIST":"SPEND 35K Money",
+        "COUNT":35000,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":17,
+        "LIST":"SPEND 50K Money",
+        "COUNT":50000,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":18,
+        "LIST":"SPIN ROULETTE ONCE",
+        "COUNT":1,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":19,
+        "LIST":"PLAY 10 MINUTES",
+        "COUNT":10,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":20,
+        "LIST":"PLAY 20 MINUTES",
+        "COUNT":20,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":21,
+        "LIST":"PLAY 30 MINUTES",
+        "COUNT":30,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":22,
+        "LIST":"COLLECT 5K COINS",
+        "COUNT":5000,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":23,
+        "LIST":"COLLECT 10K COINS",
+        "COUNT":10000,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":24,
+        "LIST":"COLLECT 20KCOINS",
+        "COUNT":20000,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":25,
+        "LIST":"Open TREASURE BOX ONCE",
+        "COUNT":1,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":26,
+        "LIST":"KILL 10 ANIMALS",
+        "COUNT":10,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":27,
+        "LIST":"KILL 20 ANIMALS",
+        "COUNT":20,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":28,
+        "LIST":"KILL 30 ANIMALS",
+        "COUNT":30,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":29,
+        "LIST":"5 Running Animal Kill",
+        "COUNT":5,
+        "STAR_COUNT":20,
+        "Reward":100
+    },
+    {
+        "ID":30,
+        "LIST":"10 Running Animal Kill",
+        "COUNT":10,
+        "STAR_COUNT":20,
+        "Reward":100
+    }
+]
