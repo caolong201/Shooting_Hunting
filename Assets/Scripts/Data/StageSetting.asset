@@ -1,0 +1,219 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2ff59d8aea64bca9dcfe1f609acc6c, type: 3}
+  m_Name: StageSetting
+  m_EditorClassIdentifier: 
+  DataList:
+  - StageId: 1
+    StageName: Stage1
+    BulletCount: 6
+    Animal: 01000000000000000000000000000000
+    PlayerPosition: {x: 83.2, y: 27.1, z: -124.9}
+    PlayerRoatation: {x: 0, y: -124.6, z: 0}
+    GenerateAnimalNo: 01000000
+    GenerateAnimalPosition:
+    - {x: 63.8, y: 28.3, z: -143.5}
+    GenerateAnimalRoatation:
+    - {x: -8.9, y: 8.4, z: -7.4}
+    GenerateAnimalAnimation: 0000000000000000
+    StageStarConditions: 010000000200000005000000
+  - StageId: 2
+    StageName: Stage2
+    BulletCount: 8
+    Animal: 01000000030000000000000000000000
+    PlayerPosition: {x: 83.2, y: 27.1, z: -124.9}
+    PlayerRoatation: {x: 0, y: -124.6, z: 0}
+    GenerateAnimalNo: 01000000020000000200000002000000
+    GenerateAnimalPosition:
+    - {x: 47.7, y: 30.1, z: -139.5}
+    - {x: 47.3, y: 29.9, z: -146}
+    - {x: 58.3, y: 29.2, z: -145.8}
+    - {x: 68.6, y: 27.89, z: -138.4}
+    GenerateAnimalRoatation:
+    - {x: 0, y: 105.7, z: 0}
+    - {x: 0, y: 20.4, z: 0}
+    - {x: 0, y: 35, z: 0}
+    - {x: 0, y: 90.1, z: 0}
+    GenerateAnimalAnimation: 00000000000000000100000000000000
+    StageStarConditions: 010000000300000005000000
+  - StageId: 3
+    StageName: Stage3
+    BulletCount: 6
+    Animal: 01000000010000000100000000000000
+    PlayerPosition: {x: 208.6, y: 8.54, z: -112.7}
+    PlayerRoatation: {x: 0, y: -143.274, z: 0}
+    GenerateAnimalNo: 010000000200000003000000
+    GenerateAnimalPosition:
+    - {x: 192.29, y: 5.24, z: -126.4}
+    - {x: 198.9, y: 6.41, z: -134.3}
+    - {x: 185.5, y: 5.18, z: -152.59}
+    GenerateAnimalRoatation:
+    - {x: -2.1, y: 62.6, z: 1.1}
+    - {x: 0, y: 20.4, z: 0}
+    - {x: 0, y: -17, z: 0}
+    GenerateAnimalAnimation: 010000000100000002000000
+    StageStarConditions: 010000000200000003000000
+  - StageId: 4
+    StageName: Stage4
+    BulletCount: 8
+    Animal: 01000000020000000100000000000000
+    PlayerPosition: {x: 221.4, y: 8.54, z: -95.6}
+    PlayerRoatation: {x: 0, y: -126.9, z: 0}
+    GenerateAnimalNo: 01000000020000000300000002000000
+    GenerateAnimalPosition:
+    - {x: 200, y: 7.02, z: -117.6}
+    - {x: 187.29, y: 5.1, z: -120.18}
+    - {x: 196.37085, y: 7.02, z: -108.07205}
+    - {x: 207.71, y: 6.88, z: -109.79}
+    GenerateAnimalRoatation:
+    - {x: 0, y: -282.3, z: 1.1}
+    - {x: 0, y: -366.67, z: 0}
+    - {x: 0, y: 6.17, z: 0}
+    - {x: 17.46, y: 70.450005, z: 0}
+    GenerateAnimalAnimation: 01000000010000000200000001000000
+    StageStarConditions: 010000000300000005000000
+  - StageId: 5
+    StageName: Stage5
+    BulletCount: 9
+    Animal: 02000000010000000200000000000000
+    PlayerPosition: {x: 236.5, y: 8.54, z: -35.8}
+    PlayerRoatation: {x: 0, y: -126.9, z: 0}
+    GenerateAnimalNo: 0100000001000000030000000300000002000000
+    GenerateAnimalPosition:
+    - {x: 207.7, y: 8.45, z: -49.6}
+    - {x: 210.77, y: 8.45, z: -45.86}
+    - {x: 207.29, y: 8.45, z: -75.82}
+    - {x: 216.74, y: 8.45, z: -63.82}
+    - {x: 214.03, y: 8.4, z: -52.55}
+    GenerateAnimalRoatation:
+    - {x: 0, y: -289.55, z: 0}
+    - {x: 0, y: -327.97, z: 0}
+    - {x: 0, y: -270.3, z: 0}
+    - {x: 0, y: -224.9, z: 0}
+    - {x: 0, y: -327.97, z: 0}
+    GenerateAnimalAnimation: 0100000001000000020000000200000002000000
+    StageStarConditions: 010000000300000005000000
+  - StageId: 6
+    StageName: Stage6
+    BulletCount: 7
+    Animal: 01000000010000000200000000000000
+    PlayerPosition: {x: 213.06, y: 8.54, z: -33.74}
+    PlayerRoatation: {x: 0, y: -58.1, z: 0}
+    GenerateAnimalNo: 01000000020000000300000003000000
+    GenerateAnimalPosition:
+    - {x: 192.19, y: 8.4, z: -20.06}
+    - {x: 203.57, y: 6.88, z: -12.07}
+    - {x: 184.5, y: 8.3, z: -14.75}
+    - {x: 175.8, y: 6.69, z: -29.6}
+    GenerateAnimalRoatation:
+    - {x: 0, y: -224.9, z: 0}
+    - {x: 0, y: -224.9, z: 0}
+    - {x: 0, y: -224.9, z: 0}
+    - {x: 0, y: -224.9, z: 0}
+    GenerateAnimalAnimation: 01000000010000000200000003000000
+    StageStarConditions: 010000000300000006000000
+  - StageId: 7
+    StageName: Stage7
+    BulletCount: 8
+    Animal: 02000000010000000100000000000000
+    PlayerPosition: {x: 112.71, y: 17.22, z: 5.77}
+    PlayerRoatation: {x: 0, y: -0.92, z: 0}
+    GenerateAnimalNo: 0100000003000000030000000100000002000000
+    GenerateAnimalPosition:
+    - {x: 115.21, y: 15.82, z: 42.4}
+    - {x: 91.26, y: 12.27, z: 52.53}
+    - {x: 84.81, y: 3.98, z: 41.24}
+    - {x: 126.34, y: 15.72, z: 41.67}
+    - {x: 110.6, y: 15.72, z: 50.62}
+    GenerateAnimalRoatation:
+    - {x: 0, y: -164.8, z: 0}
+    - {x: 0, y: -246.3, z: 0}
+    - {x: 0, y: -246.3, z: 0}
+    - {x: 0, y: -191.2, z: 0}
+    - {x: 0, y: -191.2, z: 0}
+    GenerateAnimalAnimation: 0100000003000000030000000200000002000000
+    StageStarConditions: 010000000300000006000000
+  - StageId: 8
+    StageName: Stage8
+    BulletCount: 9
+    Animal: 03000000030000000100000000000000
+    PlayerPosition: {x: 137.7, y: 5.43, z: 19.8}
+    PlayerRoatation: {x: 0, y: -91.2, z: 0}
+    GenerateAnimalNo: 01000000010000000100000002000000020000000200000003000000
+    GenerateAnimalPosition:
+    - {x: 107.6, y: 4.3, z: 16.95}
+    - {x: 125.46, y: 4.3, z: 33.01}
+    - {x: 88.7, y: 12.13, z: 15.73}
+    - {x: 91.3, y: 4.03, z: 21.4}
+    - {x: 112.3, y: 4.01, z: 16.8}
+    - {x: 114.84, y: 9.57, z: 30.07}
+    - {x: 100.88, y: 3.97, z: 22.67}
+    GenerateAnimalRoatation:
+    - {x: 0, y: -237.8, z: 0}
+    - {x: 0, y: -156.2, z: 0}
+    - {x: 0, y: -294.8, z: 0}
+    - {x: 0, y: -294.8, z: 0}
+    - {x: 0, y: -221.8, z: 0}
+    - {x: 0, y: -272.5, z: 0}
+    - {x: 0, y: -272.5, z: 0}
+    GenerateAnimalAnimation: 01000000010000000100000001000000010000000100000001000000
+    StageStarConditions: 010000000400000006000000
+  - StageId: 9
+    StageName: Stage9
+    BulletCount: 8
+    Animal: 02000000020000000200000000000000
+    PlayerPosition: {x: 237.29, y: 8.47, z: -134.01}
+    PlayerRoatation: {x: 0, y: -12.1, z: 0}
+    GenerateAnimalNo: 010000000100000003000000020000000200000003000000
+    GenerateAnimalPosition:
+    - {x: 229.08, y: 6.19, z: -108.37}
+    - {x: 246.69, y: 6.19, z: -92.58}
+    - {x: 218.6, y: 7.26, z: -91.3}
+    - {x: 206.4, y: 7.25, z: -104.8}
+    - {x: 216.21, y: 7.37, z: -87.67}
+    - {x: 207.5, y: 7.921, z: -71.65}
+    GenerateAnimalRoatation:
+    - {x: 0, y: -272.5, z: 0}
+    - {x: 0, y: -146.2, z: 0}
+    - {x: 0, y: -214.7, z: 0}
+    - {x: 0, y: -171.7, z: 0}
+    - {x: 0, y: -293.5, z: 0}
+    - {x: 0, y: -293.5, z: 0}
+    GenerateAnimalAnimation: 010000000100000003000000020000000200000003000000
+    StageStarConditions: 010000000300000005000000
+  - StageId: 10
+    StageName: Stage10
+    BulletCount: 10
+    Animal: 03000000020000000300000000000000
+    PlayerPosition: {x: 176.1, y: 11.12, z: 1.9}
+    PlayerRoatation: {x: 0, y: 73.2, z: 0}
+    GenerateAnimalNo: 0100000001000000010000000200000002000000030000000300000003000000
+    GenerateAnimalPosition:
+    - {x: 191.31, y: 7.37, z: 24.44}
+    - {x: 191.73, y: 7.67, z: 11.49}
+    - {x: 191.13, y: 7.86, z: 36.92}
+    - {x: 183.94, y: 7.86, z: 42.51}
+    - {x: 175.63, y: 6.63, z: 33.14}
+    - {x: 209.72, y: 6.95, z: 15.31}
+    - {x: 189.3, y: 7.75, z: 30.05}
+    - {x: 190.17, y: 7.47, z: 14.73}
+    GenerateAnimalRoatation:
+    - {x: 0, y: -118.9, z: 0}
+    - {x: 0, y: -175.8, z: 0}
+    - {x: 0, y: -230.2, z: 0}
+    - {x: 0, y: -173.6, z: 0}
+    - {x: 0, y: -205.8, z: 0}
+    - {x: 0, y: -125.2, z: 0}
+    - {x: 0, y: -125.2, z: 0}
+    - {x: 0, y: -125.2, z: 0}
+    GenerateAnimalAnimation: 0100000001000000020000000200000001000000010000000100000001000000
+    StageStarConditions: 010000000200000003000000
