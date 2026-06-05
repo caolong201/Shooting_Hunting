@@ -129,8 +129,20 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            stageNo = PlayerPrefs.GetInt("StageNo", 1);
-            stageData = stageNo;
+            int playStage = PlayerPrefs.GetInt(PopupLVManager.PlayStageNoKey, 0);
+            if (playStage > 0)
+            {
+                stageNo = playStage;
+                stageData = playStage;
+                PlayerPrefs.DeleteKey(PopupLVManager.PlayStageNoKey);
+                PlayerPrefs.Save();
+            }
+            else
+            {
+                stageNo = PlayerPrefs.GetInt("StageNo", 1);
+                stageData = stageNo;
+            }
+
             waveNo = 1;
 
             if (stageData > maxStage)
