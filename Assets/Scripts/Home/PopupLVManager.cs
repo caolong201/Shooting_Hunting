@@ -19,6 +19,9 @@ public class PopupLVManager : MonoBehaviour
     [SerializeField] private RenderTexture previewRenderTexture;
     [SerializeField] private Texture[] animalTextures;
     [SerializeField] private LifePopup lifePopup;
+    [SerializeField] private GameObject backButton;
+    [SerializeField] private GameObject levelPlayPanel;
+    [SerializeField] private GameObject startHuntingButton;
 
     private readonly List<LevelPopupUI> levelPopups = new List<LevelPopupUI>();
     private readonly List<RenderTexture> capturedTextures = new List<RenderTexture>();
@@ -28,6 +31,7 @@ public class PopupLVManager : MonoBehaviour
     private void Start()
     {
         ResolveReferences();
+        BindBackButton();
         StartCoroutine(InitializePopups());
     }
 
@@ -64,6 +68,50 @@ public class PopupLVManager : MonoBehaviour
 
         if (lifePopup == null)
             lifePopup = FindObjectOfType<LifePopup>(true);
+
+        if (levelPlayPanel == null)
+        {
+            Transform current = transform;
+            while (current != null)
+            {
+                if (current.name == "LEVELPLAY")
+                {
+                    levelPlayPanel = current.gameObject;
+                    break;
+                }
+
+                current = current.parent;
+            }
+        }
+
+        if (backButton == null && levelPlayPanel != null)
+        {
+            Transform backTransform = FindDeepChild(levelPlayPanel.transform, "BackBnt");
+            if (backTransform != null)
+                backButton = backTransform.gameObject;
+        }
+    }
+
+    private void BindBackButton()
+    {
+        if (backButton == null)
+            return;
+
+        Button button = backButton.GetComponent<Button>();
+        if (button == null)
+            return;
+
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(OnBackClicked);
+    }
+
+    public void OnBackClicked()
+    {
+        if (levelPlayPanel != null)
+            levelPlayPanel.SetActive(false);
+
+        if (startHuntingButton != null)
+            startHuntingButton.SetActive(true);
     }
 
     private IEnumerator InitializePopups()

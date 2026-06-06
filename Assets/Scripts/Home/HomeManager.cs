@@ -10,9 +10,12 @@ public class HomeManager : MonoBehaviour
     public List<TextMeshProUGUI> stageTexts; 
     [Header("Progress Slider")]
     public Slider stageSlider;
-    public TextMeshProUGUI stageButtonText;
     private int stagesPerGroup = 10;
     public Image character;
+
+    [Header("Level Play")]
+    [SerializeField] private GameObject levelPlayPanel;
+    [SerializeField] private GameObject startHuntingButton;
 
     [Header("Stage Point Backgrounds")]
     public List<Image> stagePointBgs; 
@@ -20,8 +23,26 @@ public class HomeManager : MonoBehaviour
     public Color yellowColor = Color.yellow;
     void Start()
     {
+        if (levelPlayPanel != null)
+            levelPlayPanel.SetActive(false);
+
+        Button startButton = startHuntingButton != null
+            ? startHuntingButton.GetComponent<Button>()
+            : null;
+        if (startButton != null)
+            startButton.onClick.AddListener(OnStartHuntingClicked);
+
         int currentStage = PlayerPrefs.GetInt("StageNo", 1);
         UpdateStageUI(currentStage);
+    }
+
+    public void OnStartHuntingClicked()
+    {
+        if (levelPlayPanel != null)
+            levelPlayPanel.SetActive(true);
+
+        if (startHuntingButton != null)
+            startHuntingButton.SetActive(false);
     }
     public void OnWinStage()
     {
@@ -40,8 +61,6 @@ public class HomeManager : MonoBehaviour
 
     void UpdateStageUI(int currentStage)
     {
-        stageButtonText.text = $"STAGE {currentStage}";
-   
         int startStage = ((currentStage - 1) / stagesPerGroup) * stagesPerGroup + 1;
 
 
