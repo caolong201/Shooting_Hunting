@@ -51,6 +51,10 @@ namespace IE.RSB
         [SerializeField] private Color hitColor = Color.red;
         public bool IsGoldRabbit = false;
         public int AnimalNo => animalNo;
+
+        public static bool IsBonusAnimal(int animalId) => animalId >= 8 && animalId <= 12;
+
+        public static bool IsBonusAnimalIndex(int zeroBasedIndex) => IsBonusAnimal(zeroBasedIndex + 1);
         private bool isPlayingAnimWait = false;
         EnemyPatrol patrol;
         [SerializeField] private Slider damageSlider; // Thanh vàng
@@ -87,6 +91,9 @@ namespace IE.RSB
                 damageSlider.gameObject.SetActive(true);
                 damageSlider.value = 1f;
             }
+
+            if (IsBonusAnimal(animalNo))
+                IsGoldRabbit = true;
         }
 
         public void SetTargetAttack(Transform target, float stopDistanceToTarget, float delay = 0)
@@ -127,7 +134,7 @@ namespace IE.RSB
 
         private void ShowDamageEffect(float damageAmount, bool isHeadshot, bool isHeartshot)
         {
-            if (healthSlider == null || animalNo == 8) return;
+            if (healthSlider == null || IsBonusAnimal(animalNo)) return;
 
             int percentLost;
 
@@ -162,7 +169,7 @@ namespace IE.RSB
 
                     UIManager uiManager = FindObjectOfType<UIManager>();
 
-                    if (uiManager != null && animalNo != 8)
+                    if (uiManager != null && !IsBonusAnimal(animalNo))
                     {
                         //uiManager.ShowHitIndicator(isHeadshot);
                         if (isHeartshot)
@@ -373,7 +380,7 @@ namespace IE.RSB
                 DOVirtual.DelayedCall(1f, () => { m_gameManager.EnemyDown(animalNo); });
             }
 
-            if (animalNo == 8)
+            if (IsBonusAnimal(animalNo))
             {
                 if (coinEffect != null)
                 {

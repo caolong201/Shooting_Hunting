@@ -1743,7 +1743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.999939, y: 2}
+  m_AnchoredPosition: {x: -2, y: 2}
   m_SizeDelta: {x: -564, y: -64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &148900961
@@ -33910,6 +33910,10 @@ MonoBehaviour:
   - {fileID: 1616061317004434, guid: 9095a3e7393d739419971b9c3dc26a2c, type: 3}
   - {fileID: 1843596818345988, guid: 51924c98c9d5c44478f2fcae23f584f2, type: 3}
   - {fileID: 1843596818345988, guid: 4cbd020c95db691448b1072c1f86edf3, type: 3}
+  - {fileID: 1843596818345988, guid: 3d3db14b544ac834fbb04a2c59bb06a5, type: 3}
+  - {fileID: 1843596818345988, guid: bd3aa0f19dfc4604a866cdfdee567131, type: 3}
+  - {fileID: 1843596818345988, guid: 5520f84e7a7362c47a094db2836600e8, type: 3}
+  - {fileID: 1843596818345988, guid: 662ac960e274b36458c7465110ec1b0e, type: 3}
   nextBtn: {fileID: 638849293}
   targetAnimal: 0
   AnimalCount: 

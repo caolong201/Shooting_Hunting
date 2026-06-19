@@ -13,6 +13,13 @@ public class StageDataV2
     // public int Boar; 3
     // public int Wolf; 4
     // public int Tiger; 5
+    // public int Moose; 6
+    // public int RabbitBrown; 7
+    // public int GoldRabbit; 8
+    // public int BonusAnimal9; 9
+    // public int BonusAnimal10; 10
+    // public int BonusAnimal11; 11
+    // public int BonusAnimal12; 12
     
     public List<WaveData> WaveData;
     public List<int> StageStarConditions;

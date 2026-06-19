@@ -209,16 +209,16 @@ public class GameManager : MonoBehaviour
             if (enemy != null) enemyList.Add(enemy);
         }
 
-        List<Enemy> filteredEnemies = enemyList.Where(e => e != null && e.animalNo != 8).ToList();
+        List<Enemy> filteredEnemies = enemyList.Where(e => e != null && !Enemy.IsBonusAnimal(e.animalNo)).ToList();
         arrowManager.SetEnemies(filteredEnemies);
-        enemyIndicator.SetEnemies(enemyList);
+        enemyIndicator.SetEnemies(filteredEnemies);
 
         targetAnimal = 0;
         AnimalCount = new List<int>();
         //ターゲット情報のUI更新
         for (int i = 0; i < waveData.Animal.Count; i++)
         {
-            if (i == 7) continue;
+            if (Enemy.IsBonusAnimalIndex(i)) continue;
 
             targetAnimal += waveData.Animal[i];
             AnimalCount.Add(waveData.Animal[i]);
@@ -295,16 +295,16 @@ public class GameManager : MonoBehaviour
             if (enemy != null) enemyList.Add(enemy);
         }
 
-        List<Enemy> filteredEnemies = enemyList.Where(e => e != null && e.animalNo != 8).ToList();
+        List<Enemy> filteredEnemies = enemyList.Where(e => e != null && !Enemy.IsBonusAnimal(e.animalNo)).ToList();
         arrowManager.SetEnemies(filteredEnemies);
-        enemyIndicator.SetEnemies(enemyList);
+        enemyIndicator.SetEnemies(filteredEnemies);
 
         targetAnimal = 0;
         AnimalCount = new List<int>();
         //ターゲット情報のUI更新
         for (int i = 0; i < waveData.Animal.Count; i++)
         {
-            if (i == 7) continue;
+            if (Enemy.IsBonusAnimalIndex(i)) continue;
             targetAnimal += waveData.Animal[i];
             AnimalCount.Add(waveData.Animal[i]);
             //Bear
@@ -332,7 +332,7 @@ public class GameManager : MonoBehaviour
     {
         No -= 1;
 
-        if (No == 7) return;
+        if (Enemy.IsBonusAnimalIndex(No)) return;
 
         targetAnimal -= 1;
         AnimalCount[No] -= 1;
