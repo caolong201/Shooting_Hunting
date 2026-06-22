@@ -11326,7 +11326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4279449019447086, guid: eded051879df4c147b9010199d240258, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -158.6
+      value: -145.42
       objectReference: {fileID: 0}
     - target: {fileID: 4279449019447086, guid: eded051879df4c147b9010199d240258, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14613,15 +14613,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4806241939887844608, guid: 93974765ceb24443b9439eaf7c164ba1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 241.59
+      value: 233.31
       objectReference: {fileID: 0}
     - target: {fileID: 4806241939887844608, guid: 93974765ceb24443b9439eaf7c164ba1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.16
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 4806241939887844608, guid: 93974765ceb24443b9439eaf7c164ba1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -156.05
+      value: -159.85
       objectReference: {fileID: 0}
     - target: {fileID: 4806241939888206112, guid: 93974765ceb24443b9439eaf7c164ba1, type: 3}
       propertyPath: m_IsActive
@@ -21941,7 +21941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4279449019447086, guid: eded051879df4c147b9010199d240258, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 212.6
+      value: 228.7
       objectReference: {fileID: 0}
     - target: {fileID: 4279449019447086, guid: eded051879df4c147b9010199d240258, type: 3}
       propertyPath: m_LocalPosition.y
@@ -21949,7 +21949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4279449019447086, guid: eded051879df4c147b9010199d240258, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -158.6
+      value: -162.5
       objectReference: {fileID: 0}
     - target: {fileID: 4279449019447086, guid: eded051879df4c147b9010199d240258, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33922,8 +33922,8 @@ MonoBehaviour:
   maxStage: 10
   childPrefab: {fileID: 5613246621430255188, guid: f90e4c176489e9e469fd9114e468b45a, type: 3}
   currentChild: {fileID: 0}
-  _isDebugStage: 0
-  _stage: 5
+  _isDebugStage: 1
+  _stage: 7
   _wave: 1
   isFailed: 0
   huntingDogPrefab: {fileID: 761236486213627756, guid: e1955be482c774b4ab00c015068b45a3, type: 3}
