@@ -54,6 +54,8 @@ namespace IE.RSB
 
         public static bool IsBonusAnimal(int animalId) => animalId >= 8 && animalId <= 12;
 
+        public static bool IsVictoryBonusAnimal(int animalId) => animalId >= 9 && animalId <= 12;
+
         public static bool IsBonusAnimalIndex(int zeroBasedIndex) => IsBonusAnimal(zeroBasedIndex + 1);
         private bool isPlayingAnimWait = false;
         EnemyPatrol patrol;
@@ -375,11 +377,6 @@ namespace IE.RSB
             }
 
 
-            if (m_gameManager)
-            {
-                DOVirtual.DelayedCall(1f, () => { m_gameManager.EnemyDown(animalNo); });
-            }
-
             if (IsBonusAnimal(animalNo))
             {
                 if (coinEffect != null)
@@ -394,26 +391,38 @@ namespace IE.RSB
                 }
             }
 
-            if (bonusText != null)
+            if (IsVictoryBonusAnimal(animalNo))
             {
-                bonusText.gameObject.SetActive(true);
-                bonusText.color = new Color(1, 1, 0);
-                bonusText.transform.localScale = Vector3.zero;
-                bonusText.transform
-                    .DOScale(Vector3.one * 1.5f, 0.4f)
-                    .SetEase(Ease.OutBack)
-                    .OnComplete(() =>
-                    {
-                        bonusText.DOFade(0, 0.5f).SetDelay(0.5f).OnComplete(() =>
+                if (bonusText != null)
+                {
+                    bonusText.gameObject.SetActive(true);
+                    bonusText.color = new Color(1, 1, 0);
+                    bonusText.transform.localScale = Vector3.zero;
+                    bonusText.transform
+                        .DOScale(Vector3.one * 1.5f, 0.4f)
+                        .SetEase(Ease.OutBack)
+                        .OnComplete(() =>
                         {
-                            bonusText.gameObject.SetActive(false);
-                            bonusText.color = new Color(1, 1, 0, 1);
-                            bonusText.transform.localScale = Vector3.zero;
+                            bonusText.DOFade(0, 0.5f).SetDelay(0.5f).OnComplete(() =>
+                            {
+                                bonusText.gameObject.SetActive(false);
+                                bonusText.color = new Color(1, 1, 0, 1);
+                                bonusText.transform.localScale = Vector3.zero;
+                            });
                         });
-                    });
+                }
 
                 SaveDataManager.Instance.UpdateCoins(500);
                 MissionManager.Instance.OnCoinsCollected(500);
+
+                if (m_gameManager != null)
+                {
+                    DOVirtual.DelayedCall(1f, () => m_gameManager.OnVictoryBonusAnimalKilled());
+                }
+            }
+            else if (m_gameManager)
+            {
+                DOVirtual.DelayedCall(1f, () => m_gameManager.EnemyDown(animalNo));
             }
         }
 

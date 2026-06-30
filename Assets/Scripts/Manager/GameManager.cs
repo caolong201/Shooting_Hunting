@@ -328,6 +328,11 @@ public class GameManager : MonoBehaviour
         m_touchCameraRotation.touchFlg = true;
     }
 
+    public void OnVictoryBonusAnimalKilled()
+    {
+        clearStatus = !clearStatus;
+    }
+
     public void EnemyDown(int No)
     {
         No -= 1;
