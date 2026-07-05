@@ -296,6 +296,7 @@ namespace IE.RSB
             }
 
             m_animator.enabled = true;
+            SetAnimatorBoolIfExists("isDead", false);
             m_isDead = false;
         }
 
@@ -319,6 +320,21 @@ namespace IE.RSB
         {
             for (int i = 0; i < m_btTargets.Length; i++)
                 m_btTargets[i].SetActivation(activate);
+        }
+
+        private void SetAnimatorBoolIfExists(string paramName, bool value)
+        {
+            if (m_animator == null) return;
+
+            for (int i = 0; i < m_animator.parameterCount; i++)
+            {
+                var param = m_animator.GetParameter(i);
+                if (param.name == paramName && param.type == AnimatorControllerParameterType.Bool)
+                {
+                    m_animator.SetBool(paramName, value);
+                    return;
+                }
+            }
         }
 
 
@@ -358,6 +374,7 @@ namespace IE.RSB
 
             if (patrol != null) patrol.StopMove();
             m_animator.SetTrigger("Death");
+            SetAnimatorBoolIfExists("isDead", true);
             if (moveFlg) moveFlg = false;
             m_isDead = true;
 

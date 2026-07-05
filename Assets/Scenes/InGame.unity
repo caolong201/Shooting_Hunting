@@ -33922,7 +33922,7 @@ MonoBehaviour:
   maxStage: 10
   childPrefab: {fileID: 5613246621430255188, guid: f90e4c176489e9e469fd9114e468b45a, type: 3}
   currentChild: {fileID: 0}
-  _isDebugStage: 1
+  _isDebugStage: 0
   _stage: 10
   _wave: 3
   isFailed: 0
@@ -34069,7 +34069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2021560377
 RectTransform:
   m_ObjectHideFlags: 0
