@@ -62,7 +62,7 @@ MonoBehaviour:
       GenerateAnimalPosition:
       - {x: 187.8, y: 5.32, z: -122.22}
       - {x: 202.26, y: 7.547, z: -112.66}
-      - {x: 202.26, y: 7.547, z: -112.66}
+      - {x: 193.61, y: 6.63, z: -107.44}
       GenerateAnimalRoatation:
       - {x: 0, y: 35.248, z: 0}
       - {x: 0, y: -3.92, z: 0}
