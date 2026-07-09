@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using CrazyGames;
 using UnityEngine;
 
 public class AdManager : SingletonMonoStart<AdManager>
@@ -16,11 +17,19 @@ public class AdManager : SingletonMonoStart<AdManager>
     public override void OnStart()
     {
         base.OnStart();
+        TrackingUtil.Init();
+
+        if (CrazySDK.IsAvailable)
+        {
+            CrazySDK.Init(() =>
+            {
+                CrazySDK.Ad.PrefetchAd(CrazyAdType.Rewarded);
+            });
+            return;
+        }
+
         //Applovin - maxsdk - AD
         AdUtil.Init();
-
-        //Adjust - tracking
-        TrackingUtil.Init();
 
         InitializeBannerAds();
         InitializeRewardedAds();
@@ -78,6 +87,12 @@ public class AdManager : SingletonMonoStart<AdManager>
 
     public void ShowRewardedAd(System.Action<bool> complete)
     {
+        if (CrazySDK.IsAvailable)
+        {
+            ShowCrazyRewardedAd(complete);
+            return;
+        }
+
         this.onAdRewarded = complete;
         if (MaxSdk.IsRewardedAdReady(videoAdUnitId))
         {
@@ -87,6 +102,39 @@ public class AdManager : SingletonMonoStart<AdManager>
         {
             this.onAdRewarded?.Invoke(false);
         }
+    }
+
+    private void ShowCrazyRewardedAd(Action<bool> complete)
+    {
+        this.onAdRewarded = complete;
+
+        if (!CrazySDK.IsInitialized)
+        {
+            CrazySDK.Init(() => RequestCrazyRewardedAd());
+            return;
+        }
+
+        RequestCrazyRewardedAd();
+    }
+
+    private void RequestCrazyRewardedAd()
+    {
+        CrazySDK.Ad.RequestAd(
+            CrazyAdType.Rewarded,
+            () => { },
+            error =>
+            {
+                Debug.LogWarning("Rewarded ad error: " + error);
+                onAdRewarded?.Invoke(false);
+                onAdRewarded = null;
+            },
+            () =>
+            {
+                onAdRewarded?.Invoke(true);
+                MissionManager.Instance.OnRewardedAdWatched();
+                onAdRewarded = null;
+            }
+        );
     }
     
     private void LoadIntertitialAd()

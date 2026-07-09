@@ -18,16 +18,14 @@ MonoBehaviour:
     BulletCount: 6
     WaveData:
     - WaveName: 
-      Animal: 00000000010000000000000000000000000000000000000000000000000000000100000001000000
+      Animal: 00000000010000000000000000000000000000000000000000000000000000000000000001000000
       PlayerPosition: {x: 83.2, y: 27.1, z: -124.9}
       PlayerRoatation: {x: -4.1, y: -135.85, z: 0}
-      GenerateAnimalNo: 020000000800000009000000
+      GenerateAnimalNo: 0200000009000000
       GenerateAnimalPosition:
       - {x: 64.66, y: 28.7, z: -143.5}
-      - {x: 60.160374, y: 29.3904, z: -143.02756}
       - {x: 81.55, y: 23.11, z: -142.62}
       GenerateAnimalRoatation:
-      - {x: -8.9, y: 8.4, z: -7.4}
       - {x: -8.9, y: 8.4, z: -7.4}
       - {x: -8.9, y: 8.4, z: -7.4}
       GenerateAnimalAnimation: 010000000100000001000000

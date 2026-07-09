@@ -38,11 +38,12 @@ public static class VibrationMng
     private static void Vibrate(long milliseconds)
     {
 #if UNITY_ANDROID && !UNITY_EDITOR
-            vibrator.Call("vibrate", milliseconds);
-#endif
+        vibrator.Call("vibrate", milliseconds);
+#elif !UNITY_WEBGL
         if (milliseconds >= 1000)
         {
             Handheld.Vibrate();
         }
+#endif
     }
 }

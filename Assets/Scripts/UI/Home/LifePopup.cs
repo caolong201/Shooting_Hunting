@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using CrazyGames;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -20,6 +22,18 @@ public class LifePopup : MonoBehaviour
     [SerializeField] private List<GameObject> lstHideWhenLifeFull;
     
     [SerializeField] private TextMeshProUGUI txtCoinInHome;
+
+    private Coroutine _lifeTimerCoroutine;
+    private string _lastLifeTimeText;
+    private string _lastLifeText;
+
+    private void Awake()
+    {
+        if (CrazySDK.IsAvailable && !CrazySDK.IsInitialized)
+        {
+            CrazySDK.Init(() => CrazySDK.Ad.PrefetchAd(CrazyAdType.Rewarded));
+        }
+    }
 
     public void Init()
     {
@@ -48,27 +62,88 @@ public class LifePopup : MonoBehaviour
         
         if (LifeManager.Instance.IsFullLife())
         {
+            StopLifeTimer();
             txtDes.text = "Lives are full"; ;
         }
         else
         {
             txtDes.text = "Get more lives to continue playing";
-            StartCoroutine(UpdateLifeTimer());
+            StartLifeTimer();
         }
 
     }
 
+    private void OnDisable()
+    {
+        StopLifeTimer();
+    }
+
+    private void StartLifeTimer()
+    {
+        StopLifeTimer();
+        _lastLifeTimeText = null;
+        _lastLifeText = null;
+        _lifeTimerCoroutine = StartCoroutine(UpdateLifeTimer());
+    }
+
+    private void StopLifeTimer()
+    {
+        if (_lifeTimerCoroutine != null)
+        {
+            StopCoroutine(_lifeTimerCoroutine);
+            _lifeTimerCoroutine = null;
+        }
+    }
+
     public void OnbtnAdClicked()
     {
-        AdManager.Instance.ShowRewardedAd((b) =>
+        if (CrazySDK.IsAvailable)
         {
-            if (b)
-            {
-                LifeManager.Instance.AddLife();
-                UpdateUI();
-               // GameAnalyticsManager.Instance.TrackEvent($"RewardButton:Clicked:LIVES");
-            }
-        });
+            ShowCrazyRewardedAd();
+            return;
+        }
+
+        if (AdManager.IsInstanceValid())
+        {
+            AdManager.Instance.ShowRewardedAd(OnAdRewardResult);
+        }
+    }
+
+    private void ShowCrazyRewardedAd()
+    {
+        Action requestAd = () =>
+        {
+            CrazySDK.Ad.RequestAd(
+                CrazyAdType.Rewarded,
+                () => { },
+                error => Debug.LogWarning("Rewarded ad error: " + error),
+                () =>
+                {
+                    OnAdRewardResult(true);
+                    if (MissionManager.IsInstanceValid())
+                    {
+                        MissionManager.Instance.OnRewardedAdWatched();
+                    }
+                }
+            );
+        };
+
+        if (!CrazySDK.IsInitialized)
+        {
+            CrazySDK.Init(requestAd);
+            return;
+        }
+
+        requestAd();
+    }
+
+    private void OnAdRewardResult(bool success)
+    {
+        if (success)
+        {
+            LifeManager.Instance.AddLife();
+            UpdateUI();
+        }
     }
 
     public void OnbtnPayCoinClicked()
@@ -94,29 +169,50 @@ public class LifePopup : MonoBehaviour
     }
     public void OnbtnCloseClicked()
     {
+        StopLifeTimer();
         root.DOScale(new Vector3(0.5f, 0.5f, 1), 0.3f).SetEase(Ease.InExpo)
             .OnComplete(() => { gameObject.SetActive(false); });
     }
     
     private IEnumerator UpdateLifeTimer()
     {
-        while (true)
+        while (gameObject.activeInHierarchy && !LifeManager.Instance.IsFullLife())
         {
-            txtCurrentLifeTime.text = LifeManager.Instance.GetTimeUntilNextLife();
-            txtCurrentLife.text = LifeManager.Instance.CurrentLifes + "";
-            yield return new WaitForSeconds(1f); // Update every second
+            string lifeTime = LifeManager.Instance.GetTimeUntilNextLife();
+            string life = LifeManager.Instance.CurrentLifes + "";
+
+            if (lifeTime != _lastLifeTimeText)
+            {
+                _lastLifeTimeText = lifeTime;
+                txtCurrentLifeTime.SetText(lifeTime);
+            }
+
+            if (life != _lastLifeText)
+            {
+                _lastLifeText = life;
+                txtCurrentLife.SetText(life);
+            }
+
+            yield return new WaitForSeconds(1f);
         }
+
+        _lifeTimerCoroutine = null;
     }
 
     private void UpdateUI()
     {
         if (LifeManager.Instance.IsFullLife())
         {
+            StopLifeTimer();
             txtDes.text = "Lives are full";
         }
         else
         {
             txtDes.text = "Get more lives to continue playing";
+            if (_lifeTimerCoroutine == null && gameObject.activeInHierarchy)
+            {
+                StartLifeTimer();
+            }
         }
         
         for (int i = 0; i < lstHideWhenLifeFull.Count; i++)
