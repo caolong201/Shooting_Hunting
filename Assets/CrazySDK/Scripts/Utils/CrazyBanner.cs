@@ -28,6 +28,11 @@ namespace CrazyGames
             get => size;
             set
             {
+                if (size == value)
+                {
+                    return;
+                }
+
                 size = value;
                 var banner = (RectTransform)transform.Find("Banner");
                 switch (value)

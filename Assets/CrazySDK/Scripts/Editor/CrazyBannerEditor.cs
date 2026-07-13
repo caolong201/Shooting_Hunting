@@ -8,9 +8,15 @@ namespace CrazyGames
         public override void OnInspectorGUI()
         {
             var script = (CrazyBanner)target;
-            var newValue = EditorGUILayout.EnumPopup("Banner size", script.Size);
-            script.Size = (CrazyBanner.BannerSize)newValue;
-            EditorUtility.SetDirty(target);
+
+            EditorGUI.BeginChangeCheck();
+            var newValue = (CrazyBanner.BannerSize)EditorGUILayout.EnumPopup("Banner size", script.Size);
+            if (EditorGUI.EndChangeCheck())
+            {
+                Undo.RecordObject(script, "Change Banner Size");
+                script.Size = newValue;
+                EditorUtility.SetDirty(script);
+            }
         }
     }
 }
