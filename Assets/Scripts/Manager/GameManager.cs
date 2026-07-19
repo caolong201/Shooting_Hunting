@@ -464,7 +464,7 @@ public class GameManager : MonoBehaviour
             if (LifeManager.Instance.CurrentLifes <= 0)
             {
                 Debug.Log("out of live -> back to home");
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene("Home");
             }
             else
             {
@@ -508,7 +508,7 @@ public class GameManager : MonoBehaviour
         if (stageNo == 1 && !hasLoaded)
         {
             hasLoaded = true;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("Home");
         }
         else
         {

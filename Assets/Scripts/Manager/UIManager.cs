@@ -439,7 +439,7 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         //LifeManager.Instance.LoseLife();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Home");
     }
 }
 

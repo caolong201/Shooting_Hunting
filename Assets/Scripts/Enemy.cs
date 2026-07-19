@@ -122,6 +122,7 @@ namespace IE.RSB
         {
             SniperAndBallisticsSystem.EAnyHit += OnAnyHit;
             OnAnyEnemyHit += OnGlobalEnemyHit;
+            SetAnimatorBoolIfExists("isDead", false);
         }
 
 
@@ -295,8 +296,13 @@ namespace IE.RSB
                 m_transformStamps[i].m_transform.localRotation = m_transformStamps[i].m_rotation;
             }
 
-            m_animator.enabled = true;
-            SetAnimatorBoolIfExists("isDead", false);
+            if (m_animator != null)
+            {
+                m_animator.enabled = true;
+                if (isActiveAndEnabled)
+                    SetAnimatorBoolIfExists("isDead", false);
+            }
+
             m_isDead = false;
         }
 
@@ -324,14 +330,16 @@ namespace IE.RSB
 
         private void SetAnimatorBoolIfExists(string paramName, bool value)
         {
-            if (m_animator == null) return;
+            if (m_animator == null || m_animator.runtimeAnimatorController == null || !m_animator.isInitialized)
+                return;
+            if (!m_animator.isActiveAndEnabled)
+                return;
 
-            for (int i = 0; i < m_animator.parameterCount; i++)
+            foreach (var param in m_animator.parameters)
             {
-                var param = m_animator.GetParameter(i);
                 if (param.name == paramName && param.type == AnimatorControllerParameterType.Bool)
                 {
-                    m_animator.SetBool(paramName, value);
+                    m_animator.SetBool(param.nameHash, value);
                     return;
                 }
             }

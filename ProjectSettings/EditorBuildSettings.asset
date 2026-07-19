@@ -6,10 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/InGame.unity
-    guid: 36724e00a36ea4630bf261e0322d5951
+    path: Assets/Scenes/CrazyGamesLoading.unity
+    guid: f1a2b3c4d5e6789012345678abcdef01
   - enabled: 1
     path: Assets/Scenes/Home.unity
     guid: 5f5c5527797453941a4db068dd61f9a3
+  - enabled: 1
+    path: Assets/Scenes/InGame.unity
+    guid: 36724e00a36ea4630bf261e0322d5951
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

@@ -1,10 +1,23 @@
 mergeInto(LibraryManager.library, {
   InitSDK: function (version) {
-    // to avoid warnings about Unity stringify beeing obsolete
-    if (typeof UTF8ToString !== 'undefined') {
+    if (typeof UTF8ToString === 'function') {
       window.unityStringify = UTF8ToString;
-    } else {
+    } else if (typeof Pointer_stringify === 'function') {
       window.unityStringify = Pointer_stringify;
+    } else {
+      window.unityStringify = function (ptr) {
+        if (!ptr) return '';
+        var end = ptr;
+        while (HEAPU8[end]) ++end;
+        if (typeof TextDecoder !== 'undefined') {
+          return new TextDecoder('utf8').decode(HEAPU8.subarray(ptr, end));
+        }
+        var result = '';
+        for (var i = ptr; i < end; ++i) {
+          result += String.fromCharCode(HEAPU8[i]);
+        }
+        return result;
+      };
     }
 
     window.UnitySDK = {

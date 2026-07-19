@@ -305,7 +305,7 @@ namespace CrazyGames
             );
             PlayerSettings.WebGL.exceptionSupport = buildExceptionSupport;
 
-            var buildDebugSymbols = WebGLDebugSymbolMode.External;
+            var buildDebugSymbols = WebGLDebugSymbolMode.Off;
             optimizations.Add(new BuildOptimization("debugSymbolMode", _initialDebugSymbolMode.ToString(), buildDebugSymbols.ToString()));
             PlayerSettings.WebGL.debugSymbolMode = buildDebugSymbols;
 

@@ -396,7 +396,7 @@ public class PopupLVManager : MonoBehaviour
 
         PlayerPrefs.SetInt(PlayStageNoKey, level);
         PlayerPrefs.Save();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("InGame");
     }
 
     private class LevelPopupUI

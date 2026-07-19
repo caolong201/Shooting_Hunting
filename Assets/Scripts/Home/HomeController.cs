@@ -53,7 +53,7 @@ public class HomeController : MonoBehaviour
             return;
         }
     
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("InGame");
     }
 
     public void OnbtnLifeClicked()
