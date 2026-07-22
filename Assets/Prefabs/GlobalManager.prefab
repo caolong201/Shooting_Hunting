@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3835369607397064207}
   - component: {fileID: 677936796282226064}
   - component: {fileID: 7469505617113736192}
+  - component: {fileID: 8123456789012345678}
   m_Layer: 0
   m_Name: GlobalManager
   m_TagString: Untagged
@@ -96,3 +97,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646872943d9c6314683bfc48eeb80c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8123456789012345678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507437136137573505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e3a2b1c4d5678901234abcdef56781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicClip: {fileID: 8300000, guid: 36212a60069033747ace7ed08f0526b2, type: 3}
+  clickClip: {fileID: 8300000, guid: a62f700d31a6c104e91bd30ed562965a, type: 3}
