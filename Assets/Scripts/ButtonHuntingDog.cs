@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ButtonHuntingDog : MonoBehaviour
 {
+    public const bool FeatureEnabled = false;
+
     private Button button;
     [SerializeField] private TextMeshProUGUI tmpText;
     [SerializeField] private Image cooldownFill;
@@ -21,6 +23,12 @@ public class ButtonHuntingDog : MonoBehaviour
 
     void Awake()
     {
+        if (!FeatureEnabled)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         button = GetComponent<Button>();
         canvasGroup = GetComponent<CanvasGroup>();
 
@@ -30,6 +38,9 @@ public class ButtonHuntingDog : MonoBehaviour
 
     void OnEnable()
     {
+        if (!FeatureEnabled)
+            return;
+
         float remain = cooldownEndTime - Time.unscaledTime;
         if (remain > 0f)
         {
@@ -41,6 +52,9 @@ public class ButtonHuntingDog : MonoBehaviour
 
     public void OnButtonClicked()
     {
+        if (!FeatureEnabled)
+            return;
+
         if (button != null) button.interactable = false;
 
         cooldownEndTime = Time.unscaledTime + cooldown;   
@@ -92,6 +106,9 @@ public class ButtonHuntingDog : MonoBehaviour
 
     public void Show(bool show)
     {
+        if (!FeatureEnabled)
+            return;
+
         if (show)
         {
             canvasGroup.alpha = 1;
@@ -103,6 +120,9 @@ public class ButtonHuntingDog : MonoBehaviour
     }
     public void OnClickbntAds()
     {
+        if (!FeatureEnabled)
+            return;
+
         AdManager.Instance.ShowRewardedAd((a) =>
         {
             if (a)
@@ -117,7 +137,10 @@ public class ButtonHuntingDog : MonoBehaviour
     }
     public bool IsShowing()
     {
-        return canvasGroup.alpha >= 0.5f;
+        if (!FeatureEnabled)
+            return false;
+
+        return canvasGroup != null && canvasGroup.alpha >= 0.5f;
     }
 
     public void CancelCooldown()

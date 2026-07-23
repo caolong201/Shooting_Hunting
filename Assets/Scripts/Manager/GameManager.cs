@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (ButtonHuntingDog.FeatureEnabled && Input.GetKeyDown(KeyCode.D))
         {
             OnClickHuntingDog();
         }
@@ -546,6 +546,9 @@ public class GameManager : MonoBehaviour
 
     public void OnClickHuntingDog()
     {
+        if (!ButtonHuntingDog.FeatureEnabled)
+            return;
+
         Vector3 pos = player.transform.position;
 
         Transform target = null;

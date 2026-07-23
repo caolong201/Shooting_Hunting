@@ -19,6 +19,7 @@ public class PopupLVManager : MonoBehaviour
     [SerializeField] private RenderTexture previewRenderTexture;
     [SerializeField] private Texture[] animalTextures;
     [SerializeField] private LifePopup lifePopup;
+    [SerializeField] private PopupShootingMission shootingMissionPopup;
     [SerializeField] private GameObject backButton;
     [SerializeField] private GameObject levelPlayPanel;
     [SerializeField] private GameObject startHuntingButton;
@@ -68,6 +69,9 @@ public class PopupLVManager : MonoBehaviour
 
         if (lifePopup == null)
             lifePopup = FindObjectOfType<LifePopup>(true);
+
+        if (shootingMissionPopup == null)
+            shootingMissionPopup = FindObjectOfType<PopupShootingMission>(true);
 
         if (levelPlayPanel == null)
         {
@@ -391,6 +395,12 @@ public class PopupLVManager : MonoBehaviour
         {
             if (lifePopup != null)
                 lifePopup.Init();
+            return;
+        }
+
+        if (shootingMissionPopup != null)
+        {
+            shootingMissionPopup.Show(level);
             return;
         }
 
