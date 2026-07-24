@@ -20937,6 +20937,7 @@ MonoBehaviour:
   backButton: {fileID: 1483315034}
   levelPlayPanel: {fileID: 7146994963024076759}
   startHuntingButton: {fileID: 7841201357668037480}
+  scrollRect: {fileID: 0}
 --- !u!114 &8801616656763433210
 MonoBehaviour:
   m_ObjectHideFlags: 0

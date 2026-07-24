@@ -520,27 +520,38 @@ public class GameManager : MonoBehaviour
 
     public void OnbtShowPause()
     {
+        PlayUiClick();
         uIManager.ShowPause();
     }
 
     public void OnbtContinuePause()
     {
+        PlayUiClick();
         uIManager.ClosePause();
     }
 
     public void OnbtShowQuit()
     {
+        PlayUiClick();
         uIManager.ShowQuit();
     }
 
     public void OnbtQuitPause()
     {
+        PlayUiClick();
         uIManager.Closequitpause();
     }
 
     public void OnbtQuitgame()
     {
+        PlayUiClick();
         uIManager.QuitPauseUI();
+    }
+
+    private static void PlayUiClick()
+    {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
     }
 
 

@@ -45,6 +45,8 @@ public class UIPopupController : MonoBehaviour
 
     public void OnClickUIDaily()
     {
+        PlayUiClick();
+
         if (dailyBonusInstance != null && !dailyBonusInstance.activeSelf)
         {
             ShowBadgeLoginBonus(false);
@@ -55,6 +57,8 @@ public class UIPopupController : MonoBehaviour
 
     public void OnClickUIDailyMission()
     {
+        PlayUiClick();
+
         dailyMissionInstance = Instantiate(dailyMissionPrefab, uiDailyBonusParent);
         dailyMissionInstance.transform.localScale = Vector3.zero;
         dailyMissionInstance.SetActive(true);
@@ -93,6 +97,7 @@ public class UIPopupController : MonoBehaviour
 
     public void ShowShopWeapon()
     {
+        PlayUiClick();
 
         ShopWeaponInstance = Instantiate(ShopWeaponPrefab, uiSkinWeapon);
         ShopWeaponInstance.transform.GetChild(0).localScale = Vector3.zero;
@@ -124,5 +129,11 @@ public class UIPopupController : MonoBehaviour
     {
         if (badgeMission != null)
             badgeMission.SetActive(show);
+    }
+
+    private static void PlayUiClick()
+    {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
     }
 }

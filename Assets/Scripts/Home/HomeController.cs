@@ -58,6 +58,9 @@ public class HomeController : MonoBehaviour
 
     public void OnbtnLifeClicked()
     {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
+
         lifePopup.Init();
     }
 
