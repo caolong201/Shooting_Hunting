@@ -43,6 +43,13 @@ public class HomeManager : MonoBehaviour
 
         if (startHuntingButton != null)
             startHuntingButton.SetActive(false);
+
+        PopupLVManager popupLvManager = levelPlayPanel != null
+            ? levelPlayPanel.GetComponentInChildren<PopupLVManager>(true)
+            : FindObjectOfType<PopupLVManager>();
+
+        if (popupLvManager != null)
+            popupLvManager.ScrollToLatestUnlocked();
     }
     public void OnWinStage()
     {

@@ -23,11 +23,13 @@ public class PopupLVManager : MonoBehaviour
     [SerializeField] private GameObject backButton;
     [SerializeField] private GameObject levelPlayPanel;
     [SerializeField] private GameObject startHuntingButton;
+    [SerializeField] private ScrollRect scrollRect;
 
     private readonly List<LevelPopupUI> levelPopups = new List<LevelPopupUI>();
     private readonly List<RenderTexture> capturedTextures = new List<RenderTexture>();
     private GameObject tempPreviewObject;
     private bool initialized;
+    private Coroutine scrollRoutine;
 
     private void Start()
     {
@@ -38,8 +40,11 @@ public class PopupLVManager : MonoBehaviour
 
     private void OnEnable()
     {
-        if (initialized)
-            RefreshAll();
+        if (!initialized)
+            return;
+
+        RefreshAll();
+        ScrollToLatestUnlocked();
     }
 
     private void ResolveReferences()
@@ -94,6 +99,18 @@ public class PopupLVManager : MonoBehaviour
             if (backTransform != null)
                 backButton = backTransform.gameObject;
         }
+
+        if (scrollRect == null)
+        {
+            if (levelPlayPanel != null)
+                scrollRect = levelPlayPanel.GetComponentInChildren<ScrollRect>(true);
+
+            if (scrollRect == null && contentParent != null)
+                scrollRect = contentParent.GetComponentInParent<ScrollRect>();
+
+            if (scrollRect == null)
+                scrollRect = GetComponentInChildren<ScrollRect>(true);
+        }
     }
 
     private void BindBackButton()
@@ -147,6 +164,79 @@ public class PopupLVManager : MonoBehaviour
         ClearTempPreview();
         RestoreMainEnemyPreview();
         initialized = true;
+
+        if (isActiveAndEnabled)
+            ScrollToLatestUnlocked();
+    }
+
+    public void ScrollToLatestUnlocked()
+    {
+        if (scrollRoutine != null)
+            StopCoroutine(scrollRoutine);
+
+        scrollRoutine = StartCoroutine(ScrollToLatestUnlockedRoutine());
+    }
+
+    private IEnumerator ScrollToLatestUnlockedRoutine()
+    {
+        while (!initialized)
+            yield return null;
+
+        RefreshAll();
+
+        // Wait one frame so LayoutGroup / ContentSizeFitter finish sizing ContentLV.
+        yield return null;
+        Canvas.ForceUpdateCanvases();
+
+        if (scrollRect != null && scrollRect.content != null)
+            LayoutRebuilder.ForceRebuildLayoutImmediate(scrollRect.content);
+
+        int unlockedStage = Mathf.Clamp(GetUnlockedStage(), 1, TotalLevels);
+        ScrollToLevel(unlockedStage);
+        scrollRoutine = null;
+    }
+
+    private void ScrollToLevel(int level)
+    {
+        if (scrollRect == null || levelPopups.Count == 0)
+            return;
+
+        LevelPopupUI target = null;
+        for (int i = 0; i < levelPopups.Count; i++)
+        {
+            if (levelPopups[i].Level == level)
+            {
+                target = levelPopups[i];
+                break;
+            }
+        }
+
+        if (target?.Root == null)
+            return;
+
+        RectTransform content = scrollRect.content;
+        RectTransform viewport = scrollRect.viewport != null
+            ? scrollRect.viewport
+            : (RectTransform)scrollRect.transform;
+        RectTransform item = target.Root.transform as RectTransform;
+
+        if (content == null || viewport == null || item == null)
+            return;
+
+        float contentWidth = content.rect.width;
+        float viewportWidth = viewport.rect.width;
+        float scrollableWidth = contentWidth - viewportWidth;
+
+        if (scrollableWidth <= 0f)
+        {
+            scrollRect.horizontalNormalizedPosition = 0f;
+            return;
+        }
+
+        Vector3 itemCenterInContent = content.InverseTransformPoint(item.TransformPoint(item.rect.center));
+        float itemCenterFromLeft = itemCenterInContent.x - content.rect.xMin;
+        float normalized = (itemCenterFromLeft - viewportWidth * 0.5f) / scrollableWidth;
+        scrollRect.horizontalNormalizedPosition = Mathf.Clamp01(normalized);
     }
 
     private void OnDestroy()
