@@ -317,6 +317,9 @@ public class DailyMissionUI : MonoBehaviour
 
     public void BntClosUIDailyMission()
     {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
+
         UIDailyMission.transform.DOKill();
         UIDailyMission.transform.DOScale(Vector3.zero, 0.2f)
             .SetEase(Ease.InBack)

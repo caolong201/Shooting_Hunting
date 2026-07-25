@@ -99,6 +99,9 @@ public class MissionItemUI : MonoBehaviour
 
     private void OnClaimReward()
     {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
+
         if (missionState.Prog.Claimed) return;
 
         if (MissionManager.Instance.TryClaim(missionState.Def.ID, out var reward, out var stars))

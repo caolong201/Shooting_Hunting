@@ -178,6 +178,9 @@ public class DailyBonus : MonoBehaviour
 
     public void ClaimReward(int dayIndex)
     {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
+
         int claimed = PlayerPrefs.GetInt(SaveClaimedKey, 0);
 
         if (dayIndex == currentDay && claimed == 0)
@@ -283,6 +286,9 @@ public class DailyBonus : MonoBehaviour
 
     public void BntClosUIDaily()    
     {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
+
         UIDailyBouns.transform.DOKill();
         UIDailyBouns.transform.DOScale(Vector3.zero, 0.2f)
             .SetEase(Ease.InBack)

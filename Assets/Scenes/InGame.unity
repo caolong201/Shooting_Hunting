@@ -17419,9 +17419,9 @@ MonoBehaviour:
   maxStage: 10
   childPrefab: {fileID: 5613246621430255188, guid: f90e4c176489e9e469fd9114e468b45a, type: 3}
   currentChild: {fileID: 0}
-  _isDebugStage: 0
-  _stage: 6
-  _wave: 1
+  _isDebugStage: 1
+  _stage: 2
+  _wave: 2
   isFailed: 0
   huntingDogPrefab: {fileID: 761236486213627756, guid: e1955be482c774b4ab00c015068b45a3, type: 3}
   camHuntingDog: {fileID: 246387710}
