@@ -35,6 +35,9 @@ public class PopupConfirmUI : MonoBehaviour
 
     private void ClosePopup()
     {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
+
         if (popupRect == null)
             popupRect = GetComponent<RectTransform>();
         popupRect.DOScale(Vector3.zero, 0.25f)

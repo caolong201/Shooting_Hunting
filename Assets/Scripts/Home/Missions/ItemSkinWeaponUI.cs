@@ -74,6 +74,8 @@ public class ItemSkinWeaponUI : MonoBehaviour
 
     private void OnClickBuy()
     {
+        PlayUiClick();
+
         if (skinID == 0) return;
         int playerCoins = SaveDataManager.Instance.Coin;
 
@@ -98,13 +100,21 @@ public class ItemSkinWeaponUI : MonoBehaviour
     }
   
     private void OnClickUse()
-    {      
+    {
+        PlayUiClick();
+
         WeaponSkinManager.Instance.SetUsedSkin(skinID);
         SaveDataManager.Instance.SaveUsedSkin(skinID);
         currentState = SkinState.Used;
         SetupUI();
 
 
+    }
+
+    private static void PlayUiClick()
+    {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
     }
     private void OnClickUnuse()
     {     

@@ -65,6 +65,9 @@ public class ShopWeaponUI : MonoBehaviour
   
     public void BntCloseShowShopWeapon()
     {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
+
         UIShopWeapon.transform.GetChild(0).DOKill();
         UIShopWeapon.transform.GetChild(0).DOScale(Vector3.zero, 0.2f)
             .SetEase(Ease.InBack)

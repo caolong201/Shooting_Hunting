@@ -26,6 +26,9 @@ public class PopupMessageUI : MonoBehaviour
 
     private void ClosePopup()
     {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
+
         if (popupRect == null)
             popupRect = GetComponent<RectTransform>();
 
