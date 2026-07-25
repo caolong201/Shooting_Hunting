@@ -1119,7 +1119,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843596818345988}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 493206eacc3f246259e93008b4eba3aa, type: 3}
   m_Controller: {fileID: 9100000, guid: 1a8fac82354754f1dadea424389310cf, type: 2}
   m_CullingMode: 1
@@ -1145,7 +1145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08bba5f0552f04a87ab60a34225d89b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_animator: {fileID: 95056178093359684}
+  m_animator: {fileID: 5941425301585657646}
   animalNo: 11
   isRayHit: 0
   MaxHP: 1

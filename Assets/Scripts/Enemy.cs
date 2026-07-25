@@ -220,16 +220,15 @@ namespace IE.RSB
                             DOTween.Kill(damageSlider);
                             damageSlider.DOValue(hpRatio, 0.5f).SetEase(Ease.OutCubic).SetDelay(0.3f);
                         }
-
-                        if (currHP <= 0 && !m_isDead)
-                        {
-                            Death();
-                        }
                     }
 
-                    if (currHP > 0 && targetAttack == null)
+                    if (currHP <= 0 && !m_isDead)
                     {
-                        m_animator.SetTrigger("GetHit");
+                        Death();
+                    }
+                    else if (currHP > 0 && targetAttack == null)
+                    {
+                        SetAnimatorTriggerIfExists("GetHit");
                     }
 
                     BulletTimeTargetsActivation(false);
@@ -244,7 +243,8 @@ namespace IE.RSB
         {
             if (sender == this) return; // only other enemies receive
             Debug.Log("Other enemies run...");
-            if(!isDead && targetAttack == null) m_animator.SetTrigger("GetHit");
+            if (!isDead && targetAttack == null)
+                SetAnimatorTriggerIfExists("GetHit");
         }
 
         void Update()
@@ -345,6 +345,23 @@ namespace IE.RSB
             }
         }
 
+        private void SetAnimatorTriggerIfExists(string paramName)
+        {
+            if (m_animator == null || m_animator.runtimeAnimatorController == null || !m_animator.isInitialized)
+                return;
+            if (!m_animator.isActiveAndEnabled)
+                return;
+
+            foreach (var param in m_animator.parameters)
+            {
+                if (param.name == paramName && param.type == AnimatorControllerParameterType.Trigger)
+                {
+                    m_animator.SetTrigger(param.nameHash);
+                    return;
+                }
+            }
+        }
+
 
         public void DoMoveAnimal(int animationNo)
         {
@@ -381,7 +398,7 @@ namespace IE.RSB
             }
 
             if (patrol != null) patrol.StopMove();
-            m_animator.SetTrigger("Death");
+            SetAnimatorTriggerIfExists("Death");
             SetAnimatorBoolIfExists("isDead", true);
             if (moveFlg) moveFlg = false;
             m_isDead = true;
