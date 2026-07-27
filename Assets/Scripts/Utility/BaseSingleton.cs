@@ -143,24 +143,30 @@ public class SingletonMonoStart<T> : MonoBehaviour where T : MonoBehaviour
 		}
 	}
 
-	void Start()
+	void Awake()
 	{
 		if (instance == null)
 		{
 			instance = gameObject.GetComponent<T>();
 			DontDestroyOnLoad(gameObject);
-			OnStart();
 		}
-		else
+		else if (instance != this)
 		{
-			//prevent to create a new gameobject if existed
-			GameObject.Destroy(gameObject);
+			Destroy(gameObject);
+		}
+	}
+
+	void Start()
+	{
+		if (instance == this)
+		{
+			OnStart();
 		}
 	}
 
 	public virtual void OnStart()
 	{
-		// override this to do something on Awake method
+		// override this to do something on Start method
 	}
 }
 

@@ -17419,7 +17419,7 @@ MonoBehaviour:
   maxStage: 10
   childPrefab: {fileID: 5613246621430255188, guid: f90e4c176489e9e469fd9114e468b45a, type: 3}
   currentChild: {fileID: 0}
-  _isDebugStage: 1
+  _isDebugStage: 0
   _stage: 2
   _wave: 2
   isFailed: 0

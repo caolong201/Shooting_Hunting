@@ -8,6 +8,8 @@ public class GameLoadingBootstrap : MonoBehaviour
 
     private void Start()
     {
+        EnsureAdManager();
+
         if (CrazySDK.IsAvailable)
         {
             CrazySDK.Init(OnSdkReady);
@@ -32,6 +34,7 @@ public class GameLoadingBootstrap : MonoBehaviour
             return;
 
         var adManagerObject = new GameObject("AdManager");
+        DontDestroyOnLoad(adManagerObject);
         adManagerObject.AddComponent<AdManager>();
     }
 

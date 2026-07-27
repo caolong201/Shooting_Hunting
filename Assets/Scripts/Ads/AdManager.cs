@@ -131,7 +131,10 @@ public class AdManager : SingletonMonoStart<AdManager>
             () =>
             {
                 onAdRewarded?.Invoke(true);
-                MissionManager.Instance.OnRewardedAdWatched();
+                if (MissionManager.IsInstanceValid())
+                {
+                    MissionManager.Instance.OnRewardedAdWatched();
+                }
                 onAdRewarded = null;
             }
         );
@@ -193,6 +196,9 @@ public class AdManager : SingletonMonoStart<AdManager>
         print("Rewarded user: " + reward.Amount + " " + reward.Label);
         this.onAdRewarded?.Invoke(true);
 
-        MissionManager.Instance.OnRewardedAdWatched();
+        if (MissionManager.IsInstanceValid())
+        {
+            MissionManager.Instance.OnRewardedAdWatched();
+        }
     }
 }

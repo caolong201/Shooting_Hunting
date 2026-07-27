@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using CrazyGames;
 using DG.Tweening;
 using TMPro;
 using IE.RSB;
@@ -477,24 +478,70 @@ public class GameManager : MonoBehaviour
 
     public void OnClickStageRevive()
     {
-        AdManager.Instance.ShowRewardedAd((b) =>
+        // Rewarded ad revive: continue current stage without losing a life
+        if (CrazySDK.IsAvailable)
         {
-            if (b)
-            {
-                isFailed = false;
-                enemyIndicator.OpenIndicator();
-                uIManager.SetBulletCount(_currStageData.BulletCount);
-                inGameBool = true;
-                m_touchCameraRotation.touchFlg = true;
-                uIManager.FaildUIChange();
-                uIManager.HUDView();
+            ShowCrazyRewardedAdForRevive();
+            return;
+        }
 
-                if (currentChild != null)
+        if (!AdManager.IsInstanceValid())
+        {
+            Debug.LogError("AdManager is not available for revive.");
+            return;
+        }
+
+        AdManager.Instance.ShowRewardedAd(OnReviveAdResult);
+    }
+
+    private void ShowCrazyRewardedAdForRevive()
+    {
+        Action requestAd = () =>
+        {
+            CrazySDK.Ad.RequestAd(
+                CrazyAdType.Rewarded,
+                () => { },
+                error => Debug.LogWarning("Rewarded ad error: " + error),
+                () =>
                 {
-                    currentChild.GetComponent<Animator>().Play("Idle");
+                    OnReviveAdResult(true);
+                    if (MissionManager.IsInstanceValid())
+                    {
+                        MissionManager.Instance.OnRewardedAdWatched();
+                    }
                 }
-            }
-        });
+            );
+        };
+
+        if (!CrazySDK.IsInitialized)
+        {
+            CrazySDK.Init(requestAd);
+            return;
+        }
+
+        requestAd();
+    }
+
+    private void OnReviveAdResult(bool success)
+    {
+        if (!success)
+            return;
+
+        isFailed = false;
+        enemyIndicator.OpenIndicator();
+        if (_currStageData != null)
+        {
+            uIManager.SetBulletCount(_currStageData.BulletCount);
+        }
+        inGameBool = true;
+        m_touchCameraRotation.touchFlg = true;
+        uIManager.FaildUIChange();
+        uIManager.HUDView();
+
+        if (currentChild != null)
+        {
+            currentChild.GetComponent<Animator>().Play("Idle");
+        }
     }
 
     public void OnClickStageNext()
