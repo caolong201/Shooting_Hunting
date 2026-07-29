@@ -213,45 +213,45 @@ MonoBehaviour:
     WaveData:
     - WaveName: 
       Animal: 010000000100000000000000000000000000000000000000000000000000000001000000
-      PlayerPosition: {x: 144.8, y: 5.03, z: 10.1}
-      PlayerRoatation: {x: 0, y: -71.1, z: 0}
+      PlayerPosition: {x: 77.2, y: 8.1, z: 47.1}
+      PlayerRoatation: {x: 0, y: 314.94, z: 0}
       GenerateAnimalNo: 010000000200000009000000
       GenerateAnimalPosition:
-      - {x: 109.97302, y: 4.2, z: 21.78}
-      - {x: 99.97, y: 4.14, z: 24.15}
-      - {x: 123.75, y: 16.76, z: 7.46}
+      - {x: 59.72, y: 5.82, z: 66.59}
+      - {x: 37.22, y: 3.15, z: 82.14}
+      - {x: 30.56, y: 6.95, z: 115.26}
       GenerateAnimalRoatation:
-      - {x: 0, y: 110, z: 0}
-      - {x: 0, y: 140, z: 0}
-      - {x: 0, y: 48.6, z: 0}
+      - {x: 0, y: 212, z: 0}
+      - {x: 0, y: 105, z: 0}
+      - {x: 0, y: 48, z: 0}
       GenerateAnimalAnimation: 020000000200000001000000
       target: 0
     - WaveName: 
       Animal: 000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001000000
-      PlayerPosition: {x: 113.2, y: 5.47, z: 20.6}
-      PlayerRoatation: {x: 0, y: -71.1, z: 0}
+      PlayerPosition: {x: 62.3, y: 8.1, z: 61.9}
+      PlayerRoatation: {x: 0, y: 314.94, z: 0}
       GenerateAnimalNo: 04000000040000000c000000
       GenerateAnimalPosition:
-      - {x: 91.38, y: 4.056, z: 27.89}
-      - {x: 89.38, y: 4.082, z: 25.77}
-      - {x: 97.7, y: 6.22, z: 18.88}
+      - {x: -33.7, y: 19.96, z: 113.9}
+      - {x: -1.75, y: 2.6, z: 93.79}
+      - {x: 19.085, y: 8.25, z: 113.34}
       GenerateAnimalRoatation:
-      - {x: 0, y: 183, z: 0}
-      - {x: 0, y: 354, z: 0}
-      - {x: 0, y: 92.53, z: 0}
+      - {x: 0, y: 180, z: 0}
+      - {x: 0, y: 192.7, z: 0}
+      - {x: 0, y: 184.7, z: 0}
       GenerateAnimalAnimation: 020000000200000001000000
       target: 0
     - WaveName: 
       Animal: 0000000000000000010000000000000000000000000000000000000000000000000000000000000001000000
-      PlayerPosition: {x: 100, y: 5.47, z: 25.1}
-      PlayerRoatation: {x: 3, y: -71.1, z: 0}
+      PlayerPosition: {x: 46.9, y: 8.1, z: 77.2}
+      PlayerRoatation: {x: 3, y: 314.94, z: 0}
       GenerateAnimalNo: 030000000b000000
       GenerateAnimalPosition:
-      - {x: 77.02, y: 4.057, z: 32.21}
-      - {x: 58.924, y: 5.295, z: 60.632}
+      - {x: -19.36, y: 16.68, z: 128.89}
+      - {x: -49.79, y: 34.7, z: 155.68}
       GenerateAnimalRoatation:
-      - {x: 0, y: 19.08, z: 0}
-      - {x: 0, y: 85.8, z: 0}
+      - {x: 0, y: 19.96, z: 0}
+      - {x: 0, y: 100, z: 0}
       GenerateAnimalAnimation: 0200000001000000
       target: 0
     StageStarConditions: 010000000300000005000000
