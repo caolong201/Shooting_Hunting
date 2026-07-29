@@ -114,15 +114,15 @@ MonoBehaviour:
     WaveData:
     - WaveName: 
       Animal: 010000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000
-      PlayerPosition: {x: 174.9, y: 5.78, z: -166.9}
-      PlayerRoatation: {x: 0, y: 73, z: 0}
+      PlayerPosition: {x: -48.226, y: 0.949, z: 41.611}
+      PlayerRoatation: {x: 0, y: 87.81, z: 0}
       GenerateAnimalNo: 010000000c000000
       GenerateAnimalPosition:
-      - {x: 191.23, y: 5.65, z: -159.46}
-      - {x: 194.72, y: 6.78, z: -139.35}
+      - {x: -25.3, y: 1.5, z: 46.5}
+      - {x: -33.94, y: 4.26, z: 59.27}
       GenerateAnimalRoatation:
-      - {x: 0, y: 252, z: 0}
-      - {x: 0, y: 309, z: 0}
+      - {x: 0, y: 277, z: 0}
+      - {x: 0, y: 224, z: 0}
       GenerateAnimalAnimation: 0200000001000000
       target: 0
     - WaveName: 
