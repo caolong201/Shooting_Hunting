@@ -97,6 +97,8 @@ public class LifePopup : MonoBehaviour
 
     public void OnbtnAdClicked()
     {
+        PlayUiClick();
+
         if (CrazySDK.IsAvailable)
         {
             ShowCrazyRewardedAd();
@@ -148,6 +150,8 @@ public class LifePopup : MonoBehaviour
 
     public void OnbtnPayCoinClicked()
     {
+        PlayUiClick();
+
         if (SaveDataManager.Instance.Coin >= needPayCoin)
         {
             SaveDataManager.Instance.UpdateCoins(-needPayCoin);
@@ -169,9 +173,16 @@ public class LifePopup : MonoBehaviour
     }
     public void OnbtnCloseClicked()
     {
+        PlayUiClick();
         StopLifeTimer();
         root.DOScale(new Vector3(0.5f, 0.5f, 1), 0.3f).SetEase(Ease.InExpo)
             .OnComplete(() => { gameObject.SetActive(false); });
+    }
+
+    private static void PlayUiClick()
+    {
+        if (AudioManager.IsInstanceValid())
+            AudioManager.Instance.PlayClick();
     }
     
     private IEnumerator UpdateLifeTimer()
