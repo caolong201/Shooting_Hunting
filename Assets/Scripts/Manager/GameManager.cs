@@ -103,11 +103,9 @@ public class GameManager : MonoBehaviour
         if (m_weaponController.ammoZeroFlg)
         {
             m_weaponController.ammoZeroFlg = false;
-            if (targetAnimal > 0)
-            {
-                //Debug.Log("ここまできたTest1");
-                Faild();
-            }
+            // Wait for pending EnemyDown (DelayedCall 1s) so a last-bullet kill is not treated as fail.
+            if (targetAnimal > 0 && !isFailed && !clearStatus)
+                StartCoroutine(FailWhenStillTargetsLeft());
         }
 
         if (clearStatus)
@@ -115,6 +113,13 @@ public class GameManager : MonoBehaviour
             clearStatus = false;
             StageClear();
         }
+    }
+
+    IEnumerator FailWhenStillTargetsLeft()
+    {
+        yield return new WaitForSecondsRealtime(1.25f);
+        if (targetAnimal > 0 && !isFailed && !clearStatus && m_weaponController.m_availableAmmoNow <= 0)
+            Faild();
     }
 
 
@@ -439,7 +444,12 @@ public class GameManager : MonoBehaviour
     {
         enemyIndicator.PauseIndicator(true);
         //enemyIndicator.closeIndicator();
-        if (SniperAndBallisticsSystem.instance.BulletTimeRunning) return;
+        if (SniperAndBallisticsSystem.instance.BulletTimeRunning)
+        {
+            // Defer until bullet time ends; LateUpdate will pick this up.
+            m_weaponController.ammoZeroFlg = true;
+            return;
+        }
         m_touchCameraRotation.touchFlg = false;
         //uIManager.FaildUIChange();
         //isFailed = true;

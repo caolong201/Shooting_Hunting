@@ -300,6 +300,10 @@ namespace IE.RSB
             // Update ammo
             UpdateAmmoText();
 
+            // Flag out-of-ammo even when the last shot misses (no hit event).
+            if (m_availableAmmoNow <= 0)
+                ammoZeroFlg = true;
+
         }
         public void FireInput()
         {

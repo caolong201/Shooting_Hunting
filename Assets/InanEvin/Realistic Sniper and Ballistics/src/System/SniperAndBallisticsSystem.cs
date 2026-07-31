@@ -820,7 +820,8 @@ namespace IE.RSB
 		}
 
 		IEnumerator FaildCheck(){
-			yield return new WaitForSeconds(1);
+			// Use realtime so bullet-time timescale does not delay/skip the fail flag.
+			yield return new WaitForSecondsRealtime(1);
 			if(m_playerWeaponController.m_availableAmmoNow == 0){
 				m_playerWeaponController.ammoZeroFlg = true;
 			}
