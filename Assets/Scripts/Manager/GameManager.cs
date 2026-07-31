@@ -417,14 +417,18 @@ public class GameManager : MonoBehaviour
         int bullet = m_weaponController.m_availableAmmoNow;
         var stageData = m_stageSetting.DataList.FirstOrDefault(stage => stage.StageId == this.stageData);
 
+        int earnedStars = 0;
         for (int i = 0; i < stageData.StageStarConditions.Count; i++)
         {
             if (bullet >= stageData.StageStarConditions[i])
             {
                 //Debug.Log("Clear"+i);
                 uIManager.ClearStatusUIChange(i);
+                earnedStars++;
             }
         }
+
+        PopupLVManager.SaveStageStars(stageNo, earnedStars);
 
         yield return new WaitForSeconds(1);
         uIManager.ClearUIChange();

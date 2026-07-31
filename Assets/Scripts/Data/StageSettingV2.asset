@@ -248,7 +248,7 @@ MonoBehaviour:
       GenerateAnimalNo: 030000000b000000
       GenerateAnimalPosition:
       - {x: -19.36, y: 16.68, z: 128.89}
-      - {x: -49.79, y: 34.7, z: 155.68}
+      - {x: -49.03, y: 34.76, z: 155.55}
       GenerateAnimalRoatation:
       - {x: 0, y: 19.96, z: 0}
       - {x: 0, y: 100, z: 0}
@@ -289,7 +289,7 @@ MonoBehaviour:
       - {x: 0, y: 129, z: 0}
       GenerateAnimalAnimation: 020000000200000001000000
       target: 0
-    - WaveName: Protect yourself!
+    - WaveName: 
       Animal: 01000000000000000000000000000000000000000000000000000000000000000000000001000000
       PlayerPosition: {x: 23.32, y: 3.521, z: 42.87}
       PlayerRoatation: {x: 0, y: 274, z: 0}
@@ -301,7 +301,7 @@ MonoBehaviour:
       - {x: 0, y: 95, z: 0}
       - {x: 0, y: 59, z: 0}
       GenerateAnimalAnimation: 0100000001000000
-      target: 1
+      target: 0
     StageStarConditions: 010000000300000005000000
   - StageId: 9
     StageName: Stage9

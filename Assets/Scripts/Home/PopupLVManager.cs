@@ -8,9 +8,14 @@ using UnityEngine.UI;
 public class PopupLVManager : MonoBehaviour
 {
     public const string PlayStageNoKey = "PlayStageNo";
+    public const string StageStarKeyPrefix = "StageStar_";
 
     private const int TotalLevels = 10;
+    private const int MaxStars = 3;
     private const string StageNoKey = "StageNo";
+
+    private static readonly Color StarEarnedColor = Color.white;
+    private static readonly Color StarEmptyColor = new Color(0.35f, 0.35f, 0.35f, 1f);
 
     [SerializeField] private GameObject popupLVTemplate;
     [SerializeField] private Transform contentParent;
@@ -310,6 +315,7 @@ public class PopupLVManager : MonoBehaviour
         Transform buttonLockTransform = FindDeepChild(root.transform, "Button_Lock");
         Transform uiLockTransform = FindDeepChild(root.transform, "UILock");
         Transform rawImageTransform = FindDeepChild(root.transform, "RawImage1");
+        Transform gradeStarsTransform = FindDeepChild(root.transform, "Grade_Stars");
 
         if (topFrame == null || titleTransform == null || buttonOpenTransform == null ||
             buttonLockTransform == null || uiLockTransform == null || rawImageTransform == null)
@@ -330,7 +336,8 @@ public class PopupLVManager : MonoBehaviour
             ButtonOpen = buttonOpenTransform.gameObject,
             ButtonLock = buttonLockTransform.gameObject,
             UILock = uiLockTransform.gameObject,
-            AnimalImage = rawImageTransform.GetComponent<RawImage>()
+            AnimalImage = rawImageTransform.GetComponent<RawImage>(),
+            Stars = CollectStarImages(gradeStarsTransform)
         };
 
         if (popup.TitleText == null || popup.AnimalImage == null)
@@ -381,6 +388,7 @@ public class PopupLVManager : MonoBehaviour
                 continue;
 
             ApplyLockState(popup, popup.Level <= unlockedStage);
+            ApplyStars(popup, GetStageStars(popup.Level));
         }
     }
 
@@ -390,6 +398,63 @@ public class PopupLVManager : MonoBehaviour
         popup.ButtonLock.SetActive(!isUnlocked);
         popup.ButtonOpen.SetActive(isUnlocked);
         popup.OpenButton.interactable = isUnlocked;
+    }
+
+    private static void ApplyStars(LevelPopupUI popup, int starCount)
+    {
+        if (popup.Stars == null)
+            return;
+
+        int clamped = Mathf.Clamp(starCount, 0, MaxStars);
+        for (int i = 0; i < popup.Stars.Count; i++)
+        {
+            Image star = popup.Stars[i];
+            if (star == null)
+                continue;
+
+            bool earned = i < clamped;
+            star.gameObject.SetActive(true);
+            star.color = earned ? StarEarnedColor : StarEmptyColor;
+        }
+    }
+
+    private static List<Image> CollectStarImages(Transform gradeStars)
+    {
+        var stars = new List<Image>();
+        if (gradeStars == null)
+            return stars;
+
+        for (int i = 0; i < gradeStars.childCount && stars.Count < MaxStars; i++)
+        {
+            Image image = gradeStars.GetChild(i).GetComponent<Image>();
+            if (image != null)
+                stars.Add(image);
+        }
+
+        return stars;
+    }
+
+    public static void SaveStageStars(int stage, int stars)
+    {
+        if (stage <= 0)
+            return;
+
+        string key = StageStarKeyPrefix + stage;
+        int previous = PlayerPrefs.GetInt(key, 0);
+        int clamped = Mathf.Clamp(stars, 0, MaxStars);
+        if (clamped <= previous)
+            return;
+
+        PlayerPrefs.SetInt(key, clamped);
+        PlayerPrefs.Save();
+    }
+
+    public static int GetStageStars(int stage)
+    {
+        if (stage <= 0)
+            return 0;
+
+        return Mathf.Clamp(PlayerPrefs.GetInt(StageStarKeyPrefix + stage, 0), 0, MaxStars);
     }
 
     private int GetUnlockedStage()
@@ -509,5 +574,6 @@ public class PopupLVManager : MonoBehaviour
         public GameObject ButtonLock;
         public RawImage AnimalImage;
         public Button OpenButton;
+        public List<Image> Stars;
     }
 }
