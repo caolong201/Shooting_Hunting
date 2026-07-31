@@ -53,7 +53,7 @@ Shader "Malbers/Color4x4"
 		Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+0" "IsEmissive" = "true"  }
 		Cull Off
 		CGPROGRAM
-		#pragma target 5.0
+		#pragma target 3.0
 		#pragma surface surf Standard keepalpha addshadow fullforwardshadows exclude_path:deferred 
 		struct Input
 		{
